@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Mercado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="title-market">
+        <h1>
+            <img src="./assets//carrinho-de-supermercado.png" alt="">
+            Meu Mercado
+        </h1>
+    </div>
+    <form id="shopping-form">
+        <input type="text" id="item" placeholder="Adicione o item" required>
+        <input type="number" id="unit-price" placeholder="Valor" hidden>
+        <input type="number" id="quantity" placeholder="Quantidade" hidden>
+        <button type="submit"><img src="./assets//icons8-plus-40.png" alt=""></button>
+    </form>
+    <table class="shopping-table">
+        <thead>
+            <tr hidden>
+                <th class="input-value">Item</th>
+                <th class="unit-value">Valor <br> Unitário</th>
+                <th class="quantity-value">Quantidade</th>
+                <th class="total-value">Subtotal</th>
+                <th class="action-value">Ação</th>
+            </tr>
+        </thead>
+        <tbody id="shopping-list">
+        </tbody>
+    </table>
+    <div class="total">
+        <h2>
+            Total: R$ <span id="total">0,00</span>
+        </h2>
+    </div>
+    <footer>
+        Desenvolvido por MoodCodeLab &reg <br>
+        <span>
+            2024 Todos os direitos reservados.
+        </span>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

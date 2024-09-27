@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kanit", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.title-market {
+    margin: 20px auto;
+}
+
+.title-market h1 {
+    display: flex;
+    color: rgb(78, 10, 10);
+}
+
+.title-market img {
+    width: 36px;
+    margin-right: 15px;
+    transition: 0.8s;
+}
+
+.title-market img:hover {
+    scale: 1.2;
+}
+
+#shopping-form {
+    display: flex;
+    margin: 0 auto;
+    gap: 5px;
+    font-size: 16px;
+}
+
+#shopping-form input {
+    width: 150px;
+    height: 20px;
+    padding: 3px;
+    border: 1px solid rgb(149, 147, 147);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#shopping-form button {
+    border: none;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#shopping-form img {
+    width: 20px;
+    border-radius: 3px;
+}
+
+.shopping-table {
+    display: grid;
+    margin: 30px auto;
+    width: 100%;
+    font-size: 16px;
+}
+
+.shopping-table .input-value {
+    width: 15%;
+    border: 1px solid #ddd;
+}
+
+.shopping-table .unit-value {
+    width: 20%;
+    border: 1px solid #ddd;
+}
+
+.shopping-table .quantity-value {
+    width: 20%;
+    border: 1px solid #ddd;
+}
+
+.shopping-table .total-value {
+    width: 20%;
+    border: 1px solid #ddd;
+}
+
+.shopping-table .action-value {
+    width: 15%;
+    border: 1px solid #ddd;
+}
+
+.shopping-list {
+    width: 100%;
+    display: grid;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+#shopping-list td {
+    width: 20%;
+    word-wrap: break-word;
+    border-radius: 4px;
+}
+
+#shopping-list .unit-price {
+    width: 80%;
+}
+
+#shopping-list .quantity {
+    width: 50%;
+    margin-left: 15px;
+}
+
+#shopping-list .subtotal {
+    width: 20%;
+}
+
+#shopping-list .delete-btn {
+    width: 30%;
+    margin-left: 30px;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 800;
+}
+
+.total {
+    border: 1px solid rgb(149, 147, 147);
+    background-color: rgb(250, 225, 155);
+}
+
+.total h2 {
+    display: flex;
+    margin: 50px 80px;
+    color: rgb(78, 10, 10);
+}
+
+footer {
+    margin-top: 230px;
+    text-align: center;
+    color: rgb(167, 156, 156);
+}
+
+footer span {
+    font-size: 14px;
+}
+
+@media (min-width: 600px) {
+    body {
+        width: 360px;
+    }
+}
