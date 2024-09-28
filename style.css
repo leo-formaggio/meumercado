@@ -143,11 +143,11 @@ body {
 }
 
 footer {
+    margin-left: 65px;
     text-align: center;
     color: rgb(167, 156, 156);
     position: absolute;
-    bottom: 10px;
-    left: 50px;
+    bottom: 5px;
 }
 
 footer span {
