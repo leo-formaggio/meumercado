@@ -138,14 +138,16 @@ body {
 
 .total h2 {
     display: flex;
-    margin: 50px 80px;
+    margin: 30px 80px;
     color: rgb(78, 10, 10);
 }
 
 footer {
-    margin-top: 230px;
     text-align: center;
     color: rgb(167, 156, 156);
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
 }
 
 footer span {
