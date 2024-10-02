@@ -9,7 +9,7 @@ document.getElementById('shopping-form').addEventListener('submit', function(eve
     
     const item = document.getElementById('item').value;
     const unitPrice = parseFloat(document.getElementById('unit-price').value = 0);
-    const quantity = parseInt(document.getElementById('quantity').value = 0);
+    const quantity = parseInt(document.getElementById('quantity').value = 1);
     const subtotal = unitPrice * quantity;
 
     const tableRow = document.createElement('tr');
@@ -91,7 +91,7 @@ function loadShoppingList() {
             <td>${item.item}</td>
             <td><input type="number" value="${item.unitPrice.toFixed(2)}" class="unit-price"></td>
             <td><input type="number" value="${item.quantity}" class="quantity"></td>
-            <td class="subtotal">R$ ${item.subtotal.toFixed(2).replace(".", ",")}</td>
+            <td class="subtotal">R$ ${item.subtotal.toFixed(2)}</td>
             <td><button class="delete-btn">X</button></td>
         `;
         document.getElementById('shopping-list').appendChild(tableRow);
@@ -114,7 +114,6 @@ function loadShoppingList() {
             saveShoppingList();
         });
     });
-
     
 }
 
