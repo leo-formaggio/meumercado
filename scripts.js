@@ -16,11 +16,18 @@ document.getElementById('shopping-form').addEventListener('submit', function(eve
     tableRow.innerHTML = `
         <td><input type="checkbox" class="item-checkbox"></td>
         <td>${item}</td>
-        <td><input type="number" value="${unitPrice.toFixed(2)}" class="unit-price"></td>
+        <td><input type="text" value="${unitPrice.toFixed(2)}" class="unit-price"></td>
         <td><input type="number" value="${quantity}" class="quantity"></td>
-        <td class="subtotal">R$ ${subtotal.toFixed(2).replace(".", ",")}</td>
+        <td class="subtotal">R$ ${subtotal.toFixed(2)}</td>
         <td><button class="delete-btn">X</button></td>
     `;
+
+    tableRow.querySelector('.unit-price').addEventListener('input', function(event) {
+        let value = event.target.value;
+        value = value.replace(/\D/g, '');
+        value = (value / 100).toFixed(2);
+        event.target.value = value;
+    });
 
     document.getElementById('shopping-list').appendChild(tableRow);
 
@@ -89,11 +96,19 @@ function loadShoppingList() {
         tableRow.innerHTML = `
             <td><input type="checkbox" class="item-checkbox" ${item.checked ? 'checked' : ''}></td>
             <td>${item.item}</td>
-            <td><input type="number" value="${item.unitPrice.toFixed(2)}" class="unit-price"></td>
+            <td><input type="text" value="${item.unitPrice.toFixed(2)}" class="unit-price"></td>
             <td><input type="number" value="${item.quantity}" class="quantity"></td>
             <td class="subtotal">R$ ${item.subtotal.toFixed(2)}</td>
             <td><button class="delete-btn">X</button></td>
         `;
+
+        tableRow.querySelector('.unit-price').addEventListener('input', function(event) {
+            let value = event.target.value;
+            value = value.replace(/\D/g, '');
+            value = (value / 100).toFixed(2);
+            event.target.value = value;
+        });
+
         document.getElementById('shopping-list').appendChild(tableRow);
 
         tableRow.querySelector('.delete-btn').addEventListener('click', function() {
@@ -118,10 +133,20 @@ function loadShoppingList() {
 }
 
 function clearList() {
+    let confirmation = confirm("Deseja excluir lista completa?");
+    if (confirmation) {
+        document.getElementById('shopping-list').innerHTML = '';
+        localStorage.removeItem('shoppingList');
+        updateTotal();
+    }
+    
+}
+
+/*function clearList() {
     document.getElementById('shopping-list').innerHTML = '';
     localStorage.removeItem('shoppingList');
     updateTotal();
-}
+}*/
 
 /* -- código rodando legal, antes do checkbox --
 
