@@ -9,11 +9,19 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 320px;
+    background: linear-gradient(180deg, rgba(254,209,18,1) 55%, rgba(255,255,255,1) 0%);
+}
+
+.app-header {
+    display: flex;
+    flex-direction: column;
+    background-color: #FED112;
 }
 
 .title-market {
-    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .title-market h1 {
@@ -22,8 +30,9 @@ body {
 }
 
 .title-market img {
-    width: 36px;
-    margin-right: 15px;
+    
+    width: 120px;
+    margin-right: 10px;
     transition: 0.8s;
     animation: go-back 1s;
 }
@@ -32,9 +41,22 @@ body {
     scale: 1.2;
 }
 
+.input-form {
+    display: flex;
+    width: 250px;
+    height: 40px;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    margin: 10px auto;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #fff;
+}
+
 #shopping-form {
     display: flex;
-    margin: 0 auto;
+    align-items: center;
     gap: 5px;
     font-size: 16px;
 }
@@ -43,40 +65,36 @@ body {
     width: 150px;
     height: 30px;
     padding: 3px;
-    border: 1px solid rgb(149, 147, 147);
-    border-radius: 4px;
+    border: none;
     font-size: 16px;
 }
 
 #shopping-form button {
     border: none;
     text-align: center;
-    border-radius: 4px;
     cursor: pointer;
 }
 
 #shopping-form img {
-    width: 30px;
-    border-radius: 3px;
+    width: 26px;
 }
 
-#clear-button #clear-list {
-    display: flex;
-    margin: 0 95%;
-    padding: 4px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: 800;
+#shopping-form #clear-list img {
+    width: 30px;
     cursor: pointer;
+}
+
+.table-container {
+    border: none;
+    border-radius: 20px 20px 0 0;
+    background-color: #fff;
 }
 
 .shopping-table {
     display: grid;
     margin: 30px auto;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .shopping-table .input-value {
@@ -104,11 +122,13 @@ body {
     border: 1px solid #ddd;
 }
 
-.shopping-list {
+#shopping-list {
     width: 100%;
-    display: grid;
+    height: 550px;
     margin: 0 auto;
-    font-size: 16px;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-size: 14px;
 }
 
 #shopping-list td {
@@ -118,21 +138,29 @@ body {
 
 #shopping-list .item-checkbox {
     width: 15px;
+    background-color: #d9d9d9;
+    border: none;
 }
 
 #shopping-list .unit-price {
     width: 80%;
     margin-left: 10px;
+    background-color: #d9d9d9;
+    border: none;
 }
 
 #shopping-list .quantity {
     width: 50%;
     margin-left: 15px;
+    background-color: #d9d9d9;
+    border: none;
 }
 
 #shopping-list .subtotal {
     width: 15%;
     font-size: 14px;
+    background-color: #d9d9d9;
+    border: none;
 }
 
 #shopping-list .delete-btn {
@@ -150,17 +178,22 @@ body {
 }
 
 .total {
+    width: 360px;
+    position: fixed;
+    bottom: 0;
+    text-transform: uppercase;
     border: 1px solid rgb(149, 147, 147);
-    background-color: rgb(250, 225, 155);
+    border-radius: 20px 20px 0 0;
+    background-color: #FF7312;
 }
 
 .total h2 {
     display: flex;
     margin: 30px 80px;
-    color: rgb(78, 10, 10);
+    color: #1F2D27;
 }
 
-footer {
+/*footer {
     text-align: center;
     color: rgb(167, 156, 156);
     position: relative;
@@ -169,7 +202,7 @@ footer {
 
 footer span {
     font-size: 14px;
-}
+}*/
 
 @media (min-width: 600px) {
     body {
