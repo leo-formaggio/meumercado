@@ -16,8 +16,8 @@ document.getElementById('shopping-form').addEventListener('submit', function(eve
     tableRow.innerHTML = `
         <td><input type="checkbox" class="item-checkbox"></td>
         <td>${item}</td>
-        <td><input type="text" value="${unitPrice.toFixed(2)}" class="unit-price"></td>
-        <td><input type="number" value="${quantity}" class="quantity"></td>
+        <td><input type="text" inputmode="decimal" value="${unitPrice.toFixed(2)}" class="unit-price"></td>
+        <td><input type="number" inputmode="numeric" value="${quantity}" class="quantity"></td>
         <td class="subtotal">R$ ${subtotal.toFixed(2)}</td>
         <td><button class="delete-btn">X</button></td>
     `;
@@ -96,8 +96,8 @@ function loadShoppingList() {
         tableRow.innerHTML = `
             <td><input type="checkbox" class="item-checkbox" ${item.checked ? 'checked' : ''}></td>
             <td>${item.item}</td>
-            <td><input type="text" value="${item.unitPrice.toFixed(2)}" class="unit-price"></td>
-            <td><input type="number" value="${item.quantity}" class="quantity"></td>
+            <td><input type="text" inputmode="decimal" value="${item.unitPrice.toFixed(2)}" class="unit-price"></td>
+            <td><input type="number" inputmode="numeric" value="${item.quantity}" class="quantity"></td>
             <td class="subtotal">R$ ${item.subtotal.toFixed(2)}</td>
             <td><button class="delete-btn">X</button></td>
         `;
