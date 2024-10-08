@@ -133,7 +133,7 @@ function loadShoppingList() {
 }
 
 function clearList() {
-    let confirmation = confirm("Deseja excluir lista completa?");
+    let confirmation = confirm("Deseja excluir a lista completa?");
     if (confirmation) {
         document.getElementById('shopping-list').innerHTML = '';
         localStorage.removeItem('shoppingList');
