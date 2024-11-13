@@ -68,18 +68,17 @@ body {
 }
 
 #shopping-form button {
-    border: none;
     text-align: center;
     cursor: pointer;
+    border: none;
 }
 
 #shopping-form img {
-    width: 26px;
-    background-color: #fff;
+    width: 30px;
 }
 
 #shopping-form #clear-list img {
-    width: 30px;
+    width: 26px;
     cursor: pointer;
     background-color: #fff;
 }
@@ -187,8 +186,7 @@ body {
 
 .total {
     display: flex;
-    width: 100vw;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     text-transform: uppercase;
     border-radius: 20px 20px 0 0;
@@ -212,9 +210,35 @@ footer span {
     font-size: 14px;
 }*/
 
+@media (max-width: 390px) {
+    body {
+        width: auto;
+    }
+}
+
 @media (min-width: 600px) {
     body {
-        width: 360px;
+        display: flex;
+        align-items: center;
+    }
+
+    .app-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .title-market {
+        width: 600px;
+        display: flex;
+    }
+
+    .table-container {
+        display: flex;
+        width: 700px;
+    }
+
+    .total {
+        width: 700px;
     }
 }
 
