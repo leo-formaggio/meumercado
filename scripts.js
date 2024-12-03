@@ -56,8 +56,8 @@ document.getElementById('shopping-form').addEventListener('submit', function(eve
 });
 
 function updateRowSubtotal(row) {
-    const unitPrice = parseFloat(row.querySelector('.unit-price').value);
-    const quantity = parseInt(row.querySelector('.quantity').value);
+    const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
+    const quantity = parseInt(row.querySelector('.quantity').value) || 1;
     const subtotal = unitPrice * quantity;
     row.querySelector('.subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
     saveShoppingList();
@@ -74,15 +74,34 @@ function updateTotal() {
 }
 
 function saveShoppingList() {
-    const shoppingList = [];
+    let shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+    const newItems = [];
+
     document.querySelectorAll('#shopping-list tr').forEach(function(row) {
         const item = row.children[1].textContent;
-        const unitPrice = parseFloat(row.querySelector('.unit-price').value);
+        const unitPrice = parseFloat(row.querySelector('.unit-price').value.replace(/[^\d.]/g, ''));
         const quantity = parseInt(row.querySelector('.quantity').value);
-        const subtotal = parseFloat(row.querySelector('.subtotal').textContent.replace('R$', ''));
+        const subtotal = unitPrice * quantity;
         const checked = row.querySelector('.item-checkbox').checked;
-        shoppingList.push({ item, unitPrice, quantity, subtotal, checked });
+
+        // Adicionar novos itens a uma lista separada
+        newItems.push({ item, unitPrice, quantity, subtotal, checked });
     });
+
+    newItems.forEach(function(newItem) {
+        const existingItemIndex = shoppingList.findIndex((i) => i.item === newItem.item);
+        if (existingItemIndex !== -1) {
+            // Atualiza o item existente
+            shoppingList[existingItemIndex].quantity = newItem.quantity;
+            shoppingList[existingItemIndex].subtotal = newItem.subtotal;
+            shoppingList[existingItemIndex].unitPrice = newItem.unitPrice;
+            shoppingList[existingItemIndex].checked = newItem.checked;
+        } else {
+            // Adiciona novo item à lista
+            shoppingList.push(newItem);
+        }
+    });
+
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 }
 
@@ -144,14 +163,18 @@ function clearList() {
 // Teste para fazer download da lista e compartilhar com outras pessoas
 document.getElementById('download-list').addEventListener('click', function() {
     const shoppingList = localStorage.getItem('shoppingList');
-    const blob = new Blob([shoppingList], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'shoppingList.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    if (shoppingList) {
+        const blob = new Blob([shoppingList], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'shoppingList.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    } else {
+        alert('Não existe lista de compras para Download.')
+    }
 });
 
 document.getElementById('upload-list').addEventListener('change', function(event) {
@@ -159,7 +182,24 @@ document.getElementById('upload-list').addEventListener('change', function(event
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            localStorage.setItem('shoppingList', e.target.result);
+            const uploadedList = JSON.parse(e.target.result);
+            const currentList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+            
+            uploadedList.forEach(function(uploadedItem) {
+                const existingItemIndex = currentList.findIndex((i) => i.item === uploadedItem.item);
+                if (existingItemIndex !== -1) {
+                    // Atualiza o item existente
+                    currentList[existingItemIndex].quantity += uploadedItem.quantity;
+                    currentList[existingItemIndex].subtotal += uploadedItem.subtotal;
+                    currentList[existingItemIndex].unitPrice = uploadedItem.unitPrice;
+                    currentList[existingItemIndex].checked = uploadedItem.checked;
+                } else {
+                    // Adiciona novo item à lista
+                    currentList.push(uploadedItem);
+                }
+            });
+
+            localStorage.setItem('shoppingList', JSON.stringify(currentList));
             loadShoppingList();
             updateTotal();
             alert('Lista de compras carregada com sucesso!');
@@ -167,6 +207,7 @@ document.getElementById('upload-list').addEventListener('change', function(event
         reader.readAsText(file);
     }
 });
+
 
 
 /*function clearList() {
