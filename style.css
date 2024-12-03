@@ -41,9 +41,9 @@ body {
 
 .input-form {
     display: flex;
-    width: 300px;
+    width: 340px;
     height: 40px;
-    padding: 18px;
+    padding: 15px;
     border: none;
     border-radius: 12px;
     margin: 10px auto 20px;
@@ -60,7 +60,7 @@ body {
 }
 
 #shopping-form input {
-    width: 200px;
+    width: 170px;
     height: 30px;
     padding: 3px;
     border: none;
@@ -81,6 +81,10 @@ body {
     width: 26px;
     cursor: pointer;
     background-color: #fff;
+}
+
+#upload-list-label {
+    cursor: pointer;
 }
 
 .table-container {

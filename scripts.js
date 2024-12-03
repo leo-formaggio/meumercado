@@ -141,6 +141,33 @@ function clearList() {
     }
     
 }
+// Teste para fazer download da lista e compartilhar com outras pessoas
+document.getElementById('download-list').addEventListener('click', function() {
+    const shoppingList = localStorage.getItem('shoppingList');
+    const blob = new Blob([shoppingList], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'shoppingList.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+});
+
+document.getElementById('upload-list').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            localStorage.setItem('shoppingList', e.target.result);
+            loadShoppingList();
+            updateTotal();
+            alert('Lista de compras carregada com sucesso!');
+        };
+        reader.readAsText(file);
+    }
+});
+
 
 /*function clearList() {
     document.getElementById('shopping-list').innerHTML = '';
