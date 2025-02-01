@@ -131,6 +131,8 @@ function loadShoppingList() {
         document.getElementById('shopping-list').appendChild(tableRow);
 
         tableRow.querySelector('.delete-btn').addEventListener('click', function() {
+            const itemName = tableRow.children[1].textContent;
+            removeItemFromStorage(itemName);
             tableRow.remove();
             saveShoppingList();
             updateTotal();
@@ -208,7 +210,15 @@ document.getElementById('upload-list').addEventListener('change', function(event
     }
 });
 
+function removeItemFromStorage(itemName) {
+    let shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
 
+    // Filtra a lista para remover o item específico
+    shoppingList = shoppingList.filter(item => item.item !== itemName);
+
+    // Atualiza o localStorage com a nova lista sem o item removido
+    localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+}
 
 /*function clearList() {
     document.getElementById('shopping-list').innerHTML = '';
