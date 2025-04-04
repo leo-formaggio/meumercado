@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background: linear-gradient(180deg, rgba(254,209,18,1) 40%, rgba(255,255,255,1) 60%);
+    background: linear-gradient(180deg, rgba(254,209,18,1) 40%, rgba(255,255,255,1) 70%);
 }
 
 .app-header {
@@ -95,7 +95,6 @@ body {
     background-color: #fff;
     background-image: url(./assets/moco-lab-cart2.png);
     background-size: 30%;
-    scrollbar-width: 0px;
 }
 
 .shopping-table {
@@ -135,7 +134,7 @@ body {
     height: 550px;
     margin: 0 auto;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 #shopping-list td {
