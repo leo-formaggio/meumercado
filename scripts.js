@@ -1,6 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     loadShoppingList();
     updateTotal();
+
     document.getElementById('clear-list').addEventListener('click', clearList);
 });
 
@@ -16,7 +17,7 @@ document.getElementById('shopping-form').addEventListener('submit', function(eve
     tableRow.innerHTML = `
         <td><input type="checkbox" class="item-checkbox"></td>
         <td>${item}</td>
-        <td><input type="text" inputmode="decimal" value="${unitPrice.toFixed(2)}" class="unit-price"></td>
+        <td><input type="text" inputmode="decimal" value="R$ ${unitPrice.toFixed(2)}" class="unit-price"></td>
         <td><input type="number" inputmode="numeric" value="${quantity}" class="quantity"></td>
         <td class="subtotal">R$ ${subtotal.toFixed(2)}</td>
         <td><button class="delete-btn">X</button></td>
@@ -55,11 +56,20 @@ document.getElementById('shopping-form').addEventListener('submit', function(eve
     document.getElementById('shopping-form').reset();
 });
 
+// refactory da função para melhorar cifrão
 function updateRowSubtotal(row) {
-    const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
-    const quantity = parseInt(row.querySelector('.quantity').value) || 1;
+    let unitPriceInput = row.querySelector('.unit-price');
+    let quantityInput = row.querySelector('.quantity');
+    let subtotalElement = row.querySelector('.subtotal');
+
+    const unitPrice = parseFloat(unitPriceInput.value.replace(/[^\d,.]/g, '')) || 0;
+    const quantity = parseInt(quantityInput.value) || 1;
     const subtotal = unitPrice * quantity;
-    row.querySelector('.subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+
+    unitPriceInput.value = `R$ ${unitPrice.toFixed(2)}`;
+    
+    subtotalElement.textContent = `R$ ${subtotal.toFixed(2)}`;
+
     saveShoppingList();
     updateTotal();
 }
@@ -115,7 +125,7 @@ function loadShoppingList() {
         tableRow.innerHTML = `
             <td><input type="checkbox" class="item-checkbox" ${item.checked ? 'checked' : ''}></td>
             <td>${item.item}</td>
-            <td><input type="text" inputmode="decimal" value="${item.unitPrice.toFixed(2)}" class="unit-price"></td>
+            <td><input type="text" inputmode="decimal" value="R$ ${item.unitPrice.toFixed(2)}" class="unit-price"></td>
             <td><input type="number" inputmode="numeric" value="${item.quantity}" class="quantity"></td>
             <td class="subtotal">R$ ${item.subtotal.toFixed(2)}</td>
             <td><button class="delete-btn">X</button></td>
@@ -220,6 +230,31 @@ function removeItemFromStorage(itemName) {
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 }
 
+// // atualização da moeda de preferencia
+// let currencySymbol = 'R$'; // Símbolo padrão
+
+// function updateCurrency() {
+//     const currencySelect = document.getElementById('currency');
+//     currencySymbol = currencySelect.value;
+//     updateCurrencySymbols();
+// }
+
+// function updateCurrencySymbols() {
+//     const totalElement = document.getElementById('total');
+//     document.querySelector('.total h2').innerHTML = `Total : ${currencySymbol} <span id="total">${totalElement.innerText}</span>`;
+
+//     const unitPrices = document.querySelectorAll('.unit-value');
+//     unitPrices.forEach(price => {
+//         price.innerHTML = `Valor Unitário (${currencySymbol})`;
+//     });
+
+//     const subtotals = document.querySelectorAll('.total-value');
+//     subtotals.forEach(subtotal => {
+//         subtotal.innerHTML = `Subtotal (${currencySymbol})`;
+//     });
+// }
+
+// funçao para apagar listas
 /*function clearList() {
     document.getElementById('shopping-list').innerHTML = '';
     localStorage.removeItem('shoppingList');

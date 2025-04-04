@@ -9,6 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/car-logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <!-- IOS Support -->
+     <link rel="apple-touch-icon" href="assets/icons/logo-list-96.png">
+     <link rel="apple-touch-icon" href="assets/icons/logo-list-128.png">
+     <link rel="apple-touch-icon" href="assets/icons/logo-list-144.png">
+     <link rel="apple-touch-icon" href="assets/icons/logo-list-192.png">
+     <link rel="apple-touch-icon" href="assets/icons/logo-list-384.png">
+     <link rel="apple-touch-icon" href="assets/icons/logo-list-512.png">
+     <meta name="apple-mobile-web-app-status-bar" content="#FED112">
+     <meta name="theme-color" content="#FED112">
 </head>
 <body>
     <div class="app-header">
@@ -19,6 +29,12 @@
                 Meu Mercado
             </h1>
         </div>
+        <!-- <div>
+            <select id="currency" onchange="updateCurrency()">
+                <option value="R$">BRL</option>
+                <option value="€">EUR</option>
+            </select>
+        </div> -->
         <div class="input-form">
             <form id="shopping-form">
                 <input type="text" id="item" placeholder="Adicione o item" required>
