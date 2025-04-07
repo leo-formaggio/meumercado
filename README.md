@@ -59,5 +59,9 @@ Meu contato no [LinkedIn](https://www.linkedin.com/in/leonardoformaggio/).
 
 
 ## Imagem do Projeto
-<img src="./assets/screenshot-meumercado-readme.png" />
+
+  ### Para Smartphone
+  <img src="./assets/screenshot-meumercado-readme-mobile.png" />
+  ### Para Desktop 
+  <img src="./assets/screenshot-meumercado-readme.png" />
 
