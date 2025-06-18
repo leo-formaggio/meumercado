@@ -39,6 +39,46 @@ body {
     scale: 1.2;
 }
 
+.currency-selector {
+  display: inline-flex;
+  border: none;
+  border-radius: 0 12px 12px 0;
+  background: #ddd;
+}
+
+.currency-selector #br {
+  text-decoration: none;
+  padding: 5px 10px;
+  color: #1F2D27;
+  transition: background 0.2s, color 0.2s;
+}
+
+.currency-selector #br:hover {
+  background: #b09310;
+  color: #1F2D27;
+  /* font-weight: bold; */
+}
+
+.currency-selector #eur {
+  text-decoration: none;
+  padding: 5px 14px;
+  color: #1F2D27;
+  border-radius: 0 12px 12px 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.currency-selector #eur:hover {
+  background: #b09310;
+  color: #1F2D27;
+  /* font-weight: bold; */
+}
+
+.currency-selector a.active {
+  background-color: #fed112;
+  color: #1F2D27;
+  font-weight: bold;
+}
+
 .input-form {
     display: flex;
     width: 340px;
@@ -55,24 +95,47 @@ body {
 #shopping-form {
     display: flex;
     align-items: center;
-    gap: 5px;
     font-size: 16px;
     background-color: #f5efef;
 }
 
 #shopping-form input {
-    width: 170px;
+    width: 160px;
     height: 30px;
+    margin-right: 4px;
     padding: 3px;
     border: none;
     font-size: 16px;
     background-color: #f5efef;
 }
 
-#shopping-form button {
-    text-align: center;
-    cursor: pointer;
+#shopping-form #addi-item {
+    display: inline-flex;
+    padding: 5px 12px;
     border: none;
+    border-radius: 12px 0 0 12px;
+    font-size: 16px;
+    color: #1F2D27;
+    background-color: rgb(124, 215, 124);
+    cursor: pointer;
+}
+
+#shopping-form #addi-item:hover {
+    background-color: rgb(98, 175, 98);
+}
+
+#shopping-form #clear-list {
+    display: inline-flex;
+    padding: 5px 12px;
+    border: none;
+    font-size: 16px;
+    color: #1F2D27;
+    background-color: rgb(250, 117, 117);
+    cursor: pointer;
+}
+
+#shopping-form #clear-list:hover {
+    background-color: rgb(193, 93, 93);
 }
 
 #shopping-form img {
@@ -215,6 +278,14 @@ body {
     margin: 30px auto;
     letter-spacing: 1.3px;
     color: #1F2D27;
+}
+
+.space {
+    margin-left: 5px;
+}
+
+#total {
+    letter-spacing: 1.3px;
 }
 
 /*footer {

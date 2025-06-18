@@ -2,7 +2,7 @@
     "name": "Meu Mercado",
     "short_name": "MeuMercado",
     "description": "App para controle do mercado.",
-    "start_url": "index.html",
+    "start_url": "index-br.html",
     "display": "standalone",
     "background_color": "#FED112",
     "theme_color": "#FED112",

@@ -84,7 +84,7 @@ function updateTotal() {
 }
 
 function saveShoppingList() {
-    let shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+    let shoppingList = JSON.parse(localStorage.getItem('shoppingList-br')) || [];
     const newItems = [];
 
     document.querySelectorAll('#shopping-list tr').forEach(function(row) {
@@ -112,11 +112,11 @@ function saveShoppingList() {
         }
     });
 
-    localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+    localStorage.setItem('shoppingList-br', JSON.stringify(shoppingList));
 }
 
 function loadShoppingList() {
-    const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+    const shoppingList = JSON.parse(localStorage.getItem('shoppingList-br')) || [];
     const shoppingListElement = document.getElementById('shopping-list');
     shoppingListElement.innerHTML = '';
 
@@ -163,24 +163,54 @@ function loadShoppingList() {
     
 }
 
+// Código antigo antes, atualizado com sweet alert
+// function clearList() {
+//     let confirmation = confirm("Deseja excluir a lista completa?");
+//     if (confirmation) {
+//         document.getElementById('shopping-list').innerHTML = '';
+//         localStorage.removeItem('shoppingList-br');
+//         updateTotal();
+//     }   
+// }
+
 function clearList() {
-    let confirmation = confirm("Deseja excluir a lista completa?");
-    if (confirmation) {
-        document.getElementById('shopping-list').innerHTML = '';
-        localStorage.removeItem('shoppingList');
-        updateTotal();
+  Swal.fire({
+    title: 'Tem certeza?',
+    text: 'Isso irá excluir toda a lista de compras!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sim, excluir',
+    confirmButtonColor: 'rgb(250, 117, 117)',
+    cancelButtonText: 'Cancelar',
+    background: '#f4f4f4',
+    width: '300px',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById('shopping-list').innerHTML = '';
+      localStorage.removeItem('shoppingList-br');
+      updateTotal();
+
+      Swal.fire({
+        title: 'Lista excluída com sucesso!',
+        icon: 'success',
+        timer: 1000,
+        width: '300px',
+        showConfirmButton: false
+      });
     }
-    
+  });
 }
+
 // Teste para fazer download da lista e compartilhar com outras pessoas
 document.getElementById('download-list').addEventListener('click', function() {
-    const shoppingList = localStorage.getItem('shoppingList');
+    const shoppingList = localStorage.getItem('shoppingList-br');
     if (shoppingList) {
         const blob = new Blob([shoppingList], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'shoppingList.json';
+        a.download = 'shoppingList-br.json';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -195,7 +225,7 @@ document.getElementById('upload-list').addEventListener('change', function(event
         const reader = new FileReader();
         reader.onload = function(e) {
             const uploadedList = JSON.parse(e.target.result);
-            const currentList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+            const currentList = JSON.parse(localStorage.getItem('shoppingList-br')) || [];
             
             uploadedList.forEach(function(uploadedItem) {
                 const existingItemIndex = currentList.findIndex((i) => i.item === uploadedItem.item);
@@ -211,7 +241,7 @@ document.getElementById('upload-list').addEventListener('change', function(event
                 }
             });
 
-            localStorage.setItem('shoppingList', JSON.stringify(currentList));
+            localStorage.setItem('shoppingList-br', JSON.stringify(currentList));
             loadShoppingList();
             updateTotal();
             alert('Lista de compras carregada com sucesso!');
@@ -221,38 +251,14 @@ document.getElementById('upload-list').addEventListener('change', function(event
 });
 
 function removeItemFromStorage(itemName) {
-    let shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+    let shoppingList = JSON.parse(localStorage.getItem('shoppingList-br')) || [];
 
     // Filtra a lista para remover o item específico
     shoppingList = shoppingList.filter(item => item.item !== itemName);
 
     // Atualiza o localStorage com a nova lista sem o item removido
-    localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+    localStorage.setItem('shoppingList-br', JSON.stringify(shoppingList));
 }
-
-// // atualização da moeda de preferencia
-// let currencySymbol = 'R$'; // Símbolo padrão
-
-// function updateCurrency() {
-//     const currencySelect = document.getElementById('currency');
-//     currencySymbol = currencySelect.value;
-//     updateCurrencySymbols();
-// }
-
-// function updateCurrencySymbols() {
-//     const totalElement = document.getElementById('total');
-//     document.querySelector('.total h2').innerHTML = `Total : ${currencySymbol} <span id="total">${totalElement.innerText}</span>`;
-
-//     const unitPrices = document.querySelectorAll('.unit-value');
-//     unitPrices.forEach(price => {
-//         price.innerHTML = `Valor Unitário (${currencySymbol})`;
-//     });
-
-//     const subtotals = document.querySelectorAll('.total-value');
-//     subtotals.forEach(subtotal => {
-//         subtotal.innerHTML = `Subtotal (${currencySymbol})`;
-//     });
-// }
 
 // funçao para apagar listas
 /*function clearList() {

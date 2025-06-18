@@ -1,9 +1,11 @@
 const staticMeuMercado = "meu-mercado-v1";
 const assets = [
   "/",
-  "/index.html",
+  "/index-br.html",
+  "/index-eur.html",
   "/css/style.css",
-  "/js/scripts.js",
+  "/js/scripts-br.js",
+  "/js/scripts-eur.js",
   "/assets/car-logo.png",
   "/assets/new-logo.png",
   "/assets/icons8-add-new-40.png",
