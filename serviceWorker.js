@@ -1,7 +1,7 @@
 const staticMeuMercado = "meu-mercado-v2";
 const assets = [
   "/",
-  "/index-br.html",
+  "/index.html",
   "/index-eur.html",
   "/css/style.css",
   "/js/scripts-br.js",
