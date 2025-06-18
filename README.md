@@ -62,6 +62,7 @@ Meu contato no [LinkedIn](https://www.linkedin.com/in/leonardoformaggio/).
 
   ### Para Smartphone
   <img src="./assets/screenshot-meumercado-readme-mobile.png" />
+  
   ### Para Desktop 
   <img src="./assets/screenshot-meumercado-readme.png" />
 
