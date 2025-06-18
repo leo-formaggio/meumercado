@@ -1,4 +1,4 @@
-const staticMeuMercado = "meu-mercado-v1";
+const staticMeuMercado = "meu-mercado-v2";
 const assets = [
   "/",
   "/index-br.html",
